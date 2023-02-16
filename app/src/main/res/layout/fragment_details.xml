@@ -1,0 +1,246 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <import type="com.example.movieapp.data.model.movie_details.MovieDetails" />
+
+        <variable
+            name="movieDetails"
+            type="MovieDetails" />
+
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <androidx.coordinatorlayout.widget.CoordinatorLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            tools:context=".ui.movie_details.MovieDetailsFragment">
+
+            <com.google.android.material.appbar.AppBarLayout
+                android:id="@+id/main_fragment_appbar"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <com.google.android.material.appbar.CollapsingToolbarLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:fitsSystemWindows="true"
+                    app:layout_scrollFlags="scroll|exitUntilCollapsed">
+
+                    <androidx.constraintlayout.widget.ConstraintLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        app:layout_collapseMode="parallax">
+
+                        <ImageView
+                            android:layout_width="0dp"
+                            android:layout_height="@dimen/dimen_400"
+                            android:scaleType="center"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toTopOf="parent"
+                            app:loadLargerImage="@{movieDetails.poster_path}" />
+
+                        <ImageView
+                            android:id="@+id/back_press"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_margin="@dimen/dimen_20"
+                            android:src="@drawable/ic_arrow_back_24"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toTopOf="parent" />
+
+                        <TextView
+                            style="@style/TextAppearance.AppCompat.Title"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="@dimen/dimen_20"
+                            android:layout_marginTop="@dimen/dimen_16"
+                            android:ellipsize="end"
+                            android:maxLines="1"
+                            android:text="@{movieDetails.title}"
+                            android:textColor="@color/white"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintStart_toEndOf="@id/back_press"
+                            app:layout_constraintTop_toTopOf="parent" />
+                    </androidx.constraintlayout.widget.ConstraintLayout>
+
+                </com.google.android.material.appbar.CollapsingToolbarLayout>
+
+            </com.google.android.material.appbar.AppBarLayout>
+
+            <androidx.core.widget.NestedScrollView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                app:layout_behavior="@string/appbar_scrolling_view_behavior">
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <TextView
+                        android:id="@+id/tvTitleLabel"
+                        style="@style/LabelWhiteBackground"
+                        android:text="@string/movie_title"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                    <TextView
+                        android:id="@+id/tvMovieTitle"
+                        style="@style/MovieDetailWhiteBackground"
+                        android:text="@{movieDetails.title}"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@id/tvTitleLabel" />
+
+
+                    <TextView
+                        android:id="@+id/tvDescriptionLabel"
+                        style="@style/LabelGrayBackground"
+                        android:text="@string/description"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@id/tvMovieTitle" />
+
+
+                    <TextView
+                        android:id="@+id/tvDescription"
+                        style="@style/MovieDetailGrayBackground"
+                        android:text="@{movieDetails.overview}"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@id/tvDescriptionLabel" />
+
+                    <TextView
+                        android:id="@+id/tvBudgetLabel"
+                        style="@style/LabelWhiteBackground"
+                        android:text="@string/budget"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@id/tvDescription" />
+
+                    <TextView
+                        android:id="@+id/tvBudget"
+                        style="@style/MovieDetailWhiteBackground"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@id/tvBudgetLabel"
+                        app:setIntAsText="@{movieDetails.budget}" />
+
+
+                    <TextView
+                        android:id="@+id/tvGenresLabel"
+                        style="@style/LabelGrayBackground"
+                        android:text="@string/genres"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@id/tvBudget" />
+
+                    <TextView
+                        android:id="@+id/tvGenres"
+                        style="@style/MovieDetailGrayBackground"
+                        setGenresListAsText="@{movieDetails.genres}"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@id/tvGenresLabel" />
+
+
+                    <TextView
+                        android:id="@+id/tvHomePageLabel"
+                        style="@style/LabelWhiteBackground"
+                        android:text="@string/homepage"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@id/tvGenres" />
+
+                    <TextView
+                        android:id="@+id/tvHomePage"
+                        style="@style/MovieDetailWhiteBackground"
+                        android:autoLink="web"
+                        android:text="@{movieDetails.homepage}"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@id/tvHomePageLabel" />
+
+
+                    <TextView
+                        android:id="@+id/tvReleasedLAbel"
+                        style="@style/LabelGrayBackground"
+                        android:text="@string/released"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@id/tvHomePage" />
+
+                    <TextView
+                        android:id="@+id/tvReleased"
+                        style="@style/MovieDetailGrayBackground"
+                        android:text="@{movieDetails.releaseDate}"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@id/tvReleasedLAbel" />
+
+                    <TextView
+                        android:id="@+id/tvProductionCompaniesLabel"
+                        style="@style/LabelWhiteBackground"
+                        android:text="@string/production_companies"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@id/tvReleased" />
+
+                    <TextView
+                        android:id="@+id/tvProductionCompanies"
+                        style="@style/MovieDetailWhiteBackground"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@id/tvProductionCompaniesLabel"
+                        app:setPCListAsText="@{movieDetails.production_companies}" />
+
+                    <TextView
+                        android:id="@+id/tvRuntimeLabel"
+                        style="@style/LabelGrayBackground"
+                        android:text="@string/runtime"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@id/tvProductionCompanies" />
+
+                    <TextView
+                        android:id="@+id/tvRuntime"
+                        style="@style/MovieDetailGrayBackground"
+                        setIntAsText="@{movieDetails.runtime}"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@id/tvRuntimeLabel" />
+
+                    <TextView
+                        android:id="@+id/tvStatusLabel"
+                        style="@style/LabelWhiteBackground"
+                        android:text="@string/status"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@id/tvRuntime" />
+
+                    <TextView
+                        android:id="@+id/tvStatus"
+                        style="@style/MovieDetailWhiteBackground"
+                        android:text="@{movieDetails.status}"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@id/tvStatusLabel" />
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+            </androidx.core.widget.NestedScrollView>
+
+
+            <ProgressBar
+                android:id="@+id/details_progress"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:visibility="gone" />
+
+        </androidx.coordinatorlayout.widget.CoordinatorLayout>
+
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
+            android:id="@+id/fabFavourites"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="@dimen/dimen_32"
+            android:layout_marginBottom="@dimen/dimen_32"
+            android:src="@drawable/ic_not_favorite_24"
+            app:fabSize="normal"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</layout>

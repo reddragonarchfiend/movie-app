@@ -1,0 +1,55 @@
+<resources xmlns:tools="http://schemas.android.com/tools">
+    <!-- Base application theme. -->
+    <style name="Theme.MovieApp" parent="Theme.MaterialComponents.DayNight.NoActionBar">
+        <!-- Primary brand color. -->
+        <item name="colorPrimary">@color/purple_500</item>
+        <item name="colorPrimaryVariant">@color/purple_700</item>
+        <item name="colorOnPrimary">@color/white</item>
+        <!-- Secondary brand color. -->
+        <item name="colorSecondary">@color/teal_200</item>
+        <item name="colorSecondaryVariant">@color/teal_700</item>
+        <item name="colorOnSecondary">@color/black</item>
+        <!-- Status bar color. -->
+        <item name="android:statusBarColor">?attr/colorPrimaryVariant</item>
+        <!-- Customize your theme here. -->
+    </style>
+
+    <style name="TextViewTitle16" parent="@style/TextAppearance.AppCompat.Title">
+        <item name="android:textSize">@dimen/text_size_16</item>
+    </style>
+
+    <style name="MovieDetailsLabelStyle" parent="TextViewTitle16">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">0dp</item>
+        <item name="android:paddingTop">@dimen/dimen_3</item>
+        <item name="android:paddingBottom">@dimen/dimen_3</item>
+        <item name="android:paddingStart">@dimen/dimen_6</item>
+    </style>
+
+    <style name="LabelGrayBackground" parent="MovieDetailsLabelStyle">
+        <item name="android:background">@color/gray</item>
+    </style>
+
+    <style name="LabelWhiteBackground" parent="MovieDetailsLabelStyle">
+        <item name="android:background">@color/white</item>
+    </style>
+
+    <style name="TextViewDetails16">
+        <item name="android:textSize">@dimen/text_size_16</item>
+    </style>
+
+    <style name="MovieDetailStyle" parent="TextViewDetails16">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:paddingBottom">@dimen/dimen_6</item>
+        <item name="android:paddingStart">@dimen/dimen_6</item>
+    </style>
+
+    <style name="MovieDetailGrayBackground" parent="MovieDetailStyle">
+        <item name="android:background">@color/gray</item>
+    </style>
+
+    <style name="MovieDetailWhiteBackground" parent="MovieDetailStyle">
+        <item name="android:background">@color/white</item>
+    </style>
+</resources>
