@@ -1,20 +1,23 @@
 <resources>
     <string name="app_name">Movie App</string>
-    <string name="movie_title">Title :</string>
-    <string name="description">Description :</string>
-    <string name="budget">Budget :</string>
-    <string name="genres">Genres :</string>
-    <string name="homepage">Homepage :</string>
-    <string name="released">Released :</string>
-    <string name="production_companies">Production companies :</string>
-    <string name="release_date">Release Date :</string>
-    <string name="runtime">Runtime :</string>
-    <string name="status">Status :</string>
+    <string name="movie_title">Title</string>
+    <string name="description">Description</string>
+    <string name="budget">Budget</string>
+    <string name="genres">Genres</string>
+    <string name="homepage">Homepage</string>
+    <string name="released">Released</string>
+    <string name="production_companies">Production companies</string>
+    <string name="runtime">Runtime</string>
+    <string name="status">Status</string>
     <string name="movie_removed_from_favorites">Movie removed from favorites</string>
     <string name="movie_added_to_favorites">Movie added to favorites</string>
+    <string name="error_fetching_data">Error fetching data</string>
     <string name="results_error">Results could not be loaded</string>
     <string name="retry">Retry</string>
     <string name="popular">Popular</string>
     <string name="favorites">Favorites</string>
     <string name="no_favorites">No favorites</string>
+    <string name="not_available">N/A</string>
+    <string name="budget_dollar">$ %s</string>
+    <string name="minutes">%s minutes</string>
 </resources>

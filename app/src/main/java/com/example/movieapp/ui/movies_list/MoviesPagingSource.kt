@@ -5,12 +5,13 @@ import androidx.paging.PagingState
 import com.example.movieapp.data.model.movie_details.MovieDetails
 import com.example.movieapp.networking.NetworkService
 import com.example.movieapp.util.Const
+import com.example.movieapp.util.Const.STARTING_INDEX
 
 class MoviesPagingSource(
     private val networkService: NetworkService
 ) : PagingSource<Int, MovieDetails>() {
     override suspend fun load(params: LoadParams<Int>): LoadResult<Int, MovieDetails> {
-        val position = params.key ?: 1
+        val position = params.key ?: STARTING_INDEX
 
         return try{
             val response = networkService.getMoviesList(Const.API_KEY,position)
@@ -18,7 +19,7 @@ class MoviesPagingSource(
 
             LoadResult.Page(
                 data = movies,
-                prevKey = if (position == 1) null else position - 1,
+                prevKey = if (position == STARTING_INDEX) null else position - 1,
                 nextKey = if (movies.isEmpty()) null else position + 1
             )
         } catch (e: Exception){

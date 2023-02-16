@@ -20,7 +20,7 @@ data class MovieDetails(
     val overview: String? = null,
     val popularity: Double? = null,
     val poster_path: String? = null,
-    val releaseDate: String? = null,
+    val release_date: String? = null,
     val revenue: Int? = null,
     val runtime: Int? = null,
     val status: String? = null,

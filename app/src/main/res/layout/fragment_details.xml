@@ -6,10 +6,15 @@
     <data>
 
         <import type="com.example.movieapp.data.model.movie_details.MovieDetails" />
+        <import type="com.example.movieapp.util.Const"/>
 
         <variable
             name="movieDetails"
             type="MovieDetails" />
+
+        <variable
+            name="con"
+            type="Const" />
 
     </data>
 
@@ -45,7 +50,8 @@
                             app:layout_constraintEnd_toEndOf="parent"
                             app:layout_constraintStart_toStartOf="parent"
                             app:layout_constraintTop_toTopOf="parent"
-                            app:loadLargerImage="@{movieDetails.poster_path}" />
+                            app:loadImage="@{movieDetails.poster_path}"
+                            app:imageSize="@{con.LARGER_IMAGE}"/>
 
                         <ImageView
                             android:id="@+id/back_press"
@@ -94,7 +100,7 @@
                     <TextView
                         android:id="@+id/tvMovieTitle"
                         style="@style/MovieDetailWhiteBackground"
-                        android:text="@{movieDetails.title}"
+                        setText="@{movieDetails.title}"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toBottomOf="@id/tvTitleLabel" />
 
@@ -110,7 +116,7 @@
                     <TextView
                         android:id="@+id/tvDescription"
                         style="@style/MovieDetailGrayBackground"
-                        android:text="@{movieDetails.overview}"
+                        setText="@{movieDetails.overview}"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toBottomOf="@id/tvDescriptionLabel" />
 
@@ -126,7 +132,7 @@
                         style="@style/MovieDetailWhiteBackground"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toBottomOf="@id/tvBudgetLabel"
-                        app:setIntAsText="@{movieDetails.budget}" />
+                        app:setBudget="@{movieDetails.budget}" />
 
 
                     <TextView
@@ -155,7 +161,7 @@
                         android:id="@+id/tvHomePage"
                         style="@style/MovieDetailWhiteBackground"
                         android:autoLink="web"
-                        android:text="@{movieDetails.homepage}"
+                        setText="@{movieDetails.homepage}"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toBottomOf="@id/tvHomePageLabel" />
 
@@ -170,7 +176,7 @@
                     <TextView
                         android:id="@+id/tvReleased"
                         style="@style/MovieDetailGrayBackground"
-                        android:text="@{movieDetails.releaseDate}"
+                        setReleaseDate="@{movieDetails.release_date}"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toBottomOf="@id/tvReleasedLAbel" />
 
@@ -198,7 +204,7 @@
                     <TextView
                         android:id="@+id/tvRuntime"
                         style="@style/MovieDetailGrayBackground"
-                        setIntAsText="@{movieDetails.runtime}"
+                        setRuntime="@{movieDetails.runtime}"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toBottomOf="@id/tvRuntimeLabel" />
 
@@ -212,7 +218,7 @@
                     <TextView
                         android:id="@+id/tvStatus"
                         style="@style/MovieDetailWhiteBackground"
-                        android:text="@{movieDetails.status}"
+                        setText="@{movieDetails.status}"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toBottomOf="@id/tvStatusLabel" />
 
@@ -234,8 +240,8 @@
             android:id="@+id/fabFavourites"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginEnd="@dimen/dimen_32"
-            android:layout_marginBottom="@dimen/dimen_32"
+            android:layout_marginEnd="@dimen/dimen_16"
+            android:layout_marginBottom="@dimen/dimen_16"
             android:src="@drawable/ic_not_favorite_24"
             app:fabSize="normal"
             app:layout_constraintBottom_toBottomOf="parent"

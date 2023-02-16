@@ -6,15 +6,13 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.viewModels
-import androidx.lifecycle.LiveData
-import androidx.lifecycle.MutableLiveData
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import com.example.movieapp.R
-import com.example.movieapp.data.model.movie_details.MovieDetails
 import com.example.movieapp.databinding.FragmentDetailsBinding
 import com.example.movieapp.util.Resource
-import com.google.android.material.snackbar.Snackbar
+import com.example.movieapp.util.SnackbarHelper
+
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -30,7 +28,6 @@ class MovieDetailsFragment : Fragment() {
         savedInstanceState: Bundle?,
     ): View {
         binding = FragmentDetailsBinding.inflate(inflater, container, false)
-        binding.movieDetails = MovieDetails()
         return binding.root
     }
 
@@ -55,9 +52,7 @@ class MovieDetailsFragment : Fragment() {
         binding.fabFavourites.setOnClickListener {
             viewModel.deleteFavoriteMovie(movieDetails = args.movieDetails)
             binding.fabFavourites.setImageResource(R.drawable.ic_not_favorite_24)
-            val snackbar = Snackbar.make(requireView(), getString(R.string.movie_removed_from_favorites), Snackbar.LENGTH_SHORT)
-            snackbar.setAnchorView(binding.fabFavourites)
-            snackbar.show()
+            SnackbarHelper.createShortSnackbar(requireView(),getString(R.string.movie_removed_from_favorites),binding.fabFavourites)
 
             setFabClickAddMovie()
         }
@@ -66,8 +61,7 @@ class MovieDetailsFragment : Fragment() {
         binding.fabFavourites.setOnClickListener {
             viewModel.saveFavoriteMovie(movieDetails = args.movieDetails)
             binding.fabFavourites.setImageResource(R.drawable.ic_favorite_24)
-            Snackbar.make(requireView(), getString(R.string.movie_added_to_favorites), Snackbar.LENGTH_SHORT)
-                .show()
+            SnackbarHelper.createShortSnackbar(requireView(),getString(R.string.movie_added_to_favorites),binding.fabFavourites)
 
             setFabClickRemoveMovie()
         }
@@ -98,8 +92,8 @@ class MovieDetailsFragment : Fragment() {
                 Resource.Status.ERROR -> {
                     binding.detailsProgress.visibility = View.GONE
                     binding.movieDetails = args.movieDetails
-                    Snackbar.make(requireView(), getString(R.string.results_error), Snackbar.LENGTH_SHORT)
-                        .show()
+                    SnackbarHelper.createShortSnackbar(requireView(),getString(R.string.error_fetching_data),binding.fabFavourites)
+
                 }
                 Resource.Status.LOADING -> {
                     binding.detailsProgress.visibility = View.VISIBLE

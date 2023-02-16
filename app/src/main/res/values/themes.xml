@@ -43,6 +43,7 @@
         <item name="android:layout_height">wrap_content</item>
         <item name="android:paddingBottom">@dimen/dimen_6</item>
         <item name="android:paddingStart">@dimen/dimen_6</item>
+        <item name="android:paddingEnd">@dimen/dimen_6</item>
     </style>
 
     <style name="MovieDetailGrayBackground" parent="MovieDetailStyle">

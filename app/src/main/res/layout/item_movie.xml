@@ -7,14 +7,15 @@
     <data>
 
         <import type="com.example.movieapp.data.model.movie_details.MovieDetails" />
+        <import type="com.example.movieapp.util.Const"/>
+
+        <variable
+            name="con"
+            type="Const" />
 
         <variable
             name="movieDetails"
             type="MovieDetails" />
-
-        <variable
-            name="clickListener"
-            type="android.view.View.OnClickListener" />
 
     </data>
 
@@ -34,7 +35,8 @@
                 android:layout_height="@dimen/dimen_170"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
-                app:loadSmallerImage="@{movieDetails.poster_path}" />
+                app:loadImage="@{movieDetails.poster_path}"
+                app:imageSize="@{con.SMALLER_IMAGE}" />
 
             <TextView
                 android:id="@+id/tvTitle"
