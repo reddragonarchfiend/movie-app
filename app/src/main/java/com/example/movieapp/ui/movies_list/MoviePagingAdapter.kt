@@ -35,6 +35,7 @@ class MoviePagingAdapter : PagingDataAdapter<MovieDetails, MoviePagingAdapter.Vi
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val data = getItem(position)
         holder.viewDataBinding.setVariable(BR.movieDetails, data)
+        holder.viewDataBinding.setVariable(BR.hideNoteIcon,true)
         holder.viewDataBinding.root.setOnClickListener {
             onClick?.let {
                 it(data!!)

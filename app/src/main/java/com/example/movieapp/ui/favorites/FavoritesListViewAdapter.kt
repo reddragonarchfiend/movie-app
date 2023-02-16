@@ -11,6 +11,7 @@ import com.example.movieapp.databinding.ItemMovieBinding
 
 class FavoritesListViewAdapter : ListAdapter<MovieDetails, FavoritesListViewAdapter.ViewHolder>(DIFF_UTIL) {
     var onClick : ((MovieDetails)-> Unit)? = null
+    var onNotesClick : ((Int,String?)->Unit)? = null
 
     companion object {
         val DIFF_UTIL = object : DiffUtil.ItemCallback<MovieDetails>() {
@@ -28,6 +29,10 @@ class FavoritesListViewAdapter : ListAdapter<MovieDetails, FavoritesListViewAdap
         onClick = listener
     }
 
+    fun onNotesClick(notesListener:(Int,String?)->Unit){
+        onNotesClick = notesListener
+    }
+
     inner class ViewHolder(val viewDataBinding: ItemMovieBinding) :
         RecyclerView.ViewHolder(viewDataBinding.root)
 
@@ -35,9 +40,15 @@ class FavoritesListViewAdapter : ListAdapter<MovieDetails, FavoritesListViewAdap
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val data = getItem(position)
         holder.viewDataBinding.setVariable(BR.movieDetails, data)
+        holder.viewDataBinding.setVariable(BR.hideNoteIcon,false)
         holder.viewDataBinding.root.setOnClickListener {
             onClick?.let {
                 it(data!!)
+            }
+        }
+        holder.viewDataBinding.ivNote.setOnClickListener {
+            onNotesClick?.let {
+                it(data.id!!,data.note)
             }
         }
     }

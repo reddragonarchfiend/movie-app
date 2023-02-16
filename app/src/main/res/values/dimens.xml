@@ -13,4 +13,5 @@
     <dimen name="dimen_170">170dp</dimen>
     <dimen name="text_size_16">16sp</dimen>
     <dimen name="dimen_16">16dp</dimen>
+    <dimen name="dimen_100">100dp</dimen>
 </resources>

@@ -33,9 +33,26 @@
         android:label="fragment_movie"
         tools:layout="@layout/fragment_movie_list">
         <action
-            android:id="@+id/action_movieFragment_to_detailsFragment"
-            app:destination="@id/detailsFragment"
-            app:enterAnim="@anim/nav_default_enter_anim"
-            app:exitAnim="@anim/nav_default_exit_anim" />
+            android:id="@+id/action_favoritesFragment_to_detailsFragment"
+            app:destination="@id/detailsFragment" />
+
+        <action
+            android:id="@+id/action_favoritesFragment_to_editNoteFragment"
+            app:destination="@id/editNoteFragment" />
     </fragment>
+
+    <dialog
+        android:id="@+id/editNoteFragment"
+        android:label="fragment_edit_note"
+        android:name="com.example.movieapp.ui.favorites.EditNoteDialogFragment"
+        tools:layout="@layout/dialog_edit_note">
+        <argument
+            android:name="movieId"
+            app:argType="integer" />
+
+        <argument
+            android:name="note"
+            app:argType="string"
+            app:nullable="true"/>
+    </dialog>
 </navigation>

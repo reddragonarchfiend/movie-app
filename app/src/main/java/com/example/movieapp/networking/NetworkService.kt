@@ -22,5 +22,4 @@ interface NetworkService {
         @Path("movie_id") movieId: Int,
         @Query("api_key") apiKey: String,
     ): Response<MovieDetails>
-
 }

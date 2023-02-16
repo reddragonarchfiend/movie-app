@@ -30,6 +30,7 @@ data class MovieDetails(
     val vote_average: Double? = null,
     val vote_count: Int? = null,
     val first_air_date: String? = null,
+    val note : String? = null
 
 ) : Serializable{
     @Ignore val production_companies: List<ProductionCompanies>? = null

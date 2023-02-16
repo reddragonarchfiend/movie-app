@@ -9,4 +9,5 @@ class FavoritesRepository @Inject constructor(
    private val moviesDao: MoviesDao
 ) {
     fun getFavoriteMovies(): Flow<List<MovieDetails>> = moviesDao.getFavouriteMovies()
+    fun updateNoteForMovie(movieId:Int,note:String?) = moviesDao.updateNoteForMovie(movieId,note)
 }

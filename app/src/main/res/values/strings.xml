@@ -20,4 +20,9 @@
     <string name="not_available">N/A</string>
     <string name="budget_dollar">$ %s</string>
     <string name="minutes">%s minutes</string>
+    <string name="edit_note">Edit note</string>
+    <string name="note">Note</string>
+    <string name="cancel">Cancel</string>
+    <string name="edit">Edit</string>
+    <string name="note_updated">Note updated</string>
 </resources>

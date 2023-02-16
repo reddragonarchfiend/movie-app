@@ -18,7 +18,7 @@ fun ImageView.loadImage(url : String?, imageSize : String){
 }
 
 @BindingAdapter("setBudget")
-fun TextView.setBudget(budget : Int?){
+fun TextView.setNotesIconVisibility(budget : Int?){
     text = if(budget != 0 && budget != null){
         this.context.getString(R.string.budget_dollar, budget.toString())
     }
