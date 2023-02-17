@@ -1,4 +1,4 @@
-package com.example.movieapp.ui.movies_list
+package com.example.movieapp.ui.list
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
@@ -9,7 +9,9 @@ import com.example.movieapp.BR
 import com.example.movieapp.data.model.movie_details.MovieDetails
 import com.example.movieapp.databinding.ItemMovieBinding
 
-class MoviePagingAdapter : PagingDataAdapter<MovieDetails, MoviePagingAdapter.ViewHolder>(DIFF_UTIL) {
+class ListPagingAdapter : PagingDataAdapter<MovieDetails, ListPagingAdapter.ViewHolder>(
+    DIFF_UTIL
+) {
 
     var onClick : ((MovieDetails)-> Unit)? = null
 
@@ -35,6 +37,7 @@ class MoviePagingAdapter : PagingDataAdapter<MovieDetails, MoviePagingAdapter.Vi
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val data = getItem(position)
         holder.viewDataBinding.setVariable(BR.movieDetails, data)
+        //hide or show icon depending on adapter
         holder.viewDataBinding.setVariable(BR.hideNoteIcon,true)
         holder.viewDataBinding.root.setOnClickListener {
             onClick?.let {

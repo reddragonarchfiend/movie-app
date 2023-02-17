@@ -1,4 +1,4 @@
-package com.example.movieapp.ui.movies_list
+package com.example.movieapp.ui.list
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
@@ -8,8 +8,8 @@ import androidx.paging.LoadStateAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.example.movieapp.databinding.ItemRecyclerViewFooterBinding
 
-class MovieListLoadStateAdapter(private val retry: () -> Unit) :
-    LoadStateAdapter<MovieListLoadStateAdapter.LoadStateViewHolder>() {
+class ListLoadStateAdapter(private val retry: () -> Unit) :
+    LoadStateAdapter<ListLoadStateAdapter.LoadStateViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, loadState: LoadState): LoadStateViewHolder {
         val binding = ItemRecyclerViewFooterBinding.inflate(
@@ -29,7 +29,7 @@ class MovieListLoadStateAdapter(private val retry: () -> Unit) :
         RecyclerView.ViewHolder(binding.root) {
 
         init {
-            binding.buttonRetry.setOnClickListener {
+            binding.btnRetry.setOnClickListener {
                 retry.invoke()
             }
         }
@@ -37,8 +37,8 @@ class MovieListLoadStateAdapter(private val retry: () -> Unit) :
         fun bind(loadState: LoadState) {
             binding.apply {
                 progressBar.isVisible = loadState is LoadState.Loading
-                buttonRetry.isVisible = loadState !is LoadState.Loading
-                textViewError.isVisible = loadState !is LoadState.Loading
+                btnRetry.isVisible = loadState !is LoadState.Loading
+                tvError.isVisible = loadState !is LoadState.Loading
             }
         }
     }

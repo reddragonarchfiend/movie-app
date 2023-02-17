@@ -1,4 +1,4 @@
-package com.example.movieapp.ui.movies_list
+package com.example.movieapp.ui.popular
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
@@ -10,22 +10,24 @@ import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import androidx.paging.LoadState
-import com.example.movieapp.databinding.FragmentMovieListBinding
+import com.example.movieapp.databinding.FragmentPopularListBinding
+import com.example.movieapp.ui.list.ListLoadStateAdapter
+import com.example.movieapp.ui.list.ListPagingAdapter
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.collectLatest
 
 @AndroidEntryPoint
-class MovieListFragment : Fragment() {
+class PopularListFragment : Fragment() {
 
-    private val viewModel: MovieViewModel by viewModels()
-    lateinit var binding: FragmentMovieListBinding
-    lateinit var recyclerViewAdapter: MoviePagingAdapter
+    private val viewModel: PopularListViewModel by viewModels()
+    lateinit var binding: FragmentPopularListBinding
+    lateinit var recyclerViewAdapter: ListPagingAdapter
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?,
     ): View {
-        binding = FragmentMovieListBinding.inflate(inflater, container, false)
+        binding = FragmentPopularListBinding.inflate(inflater, container, false)
         return binding.root
     }
 
@@ -44,27 +46,28 @@ class MovieListFragment : Fragment() {
 
     private fun setRecyclerView() {
         binding.apply {
-            recyclerViewAdapter = MoviePagingAdapter()
+            recyclerViewAdapter = ListPagingAdapter()
             recyclerViewAdapter.addLoadStateListener { loadState ->
                 errorLayout.progressBar.isVisible = loadState.source.refresh is LoadState.Loading
                 rvMovies.isVisible = loadState.source.refresh is LoadState.NotLoading
-                errorLayout.buttonRetry.isVisible = loadState.source.refresh is LoadState.Error
-                errorLayout.textViewError.isVisible = loadState.source.refresh is LoadState.Error
+                errorLayout.btnRetry.isVisible = loadState.source.refresh is LoadState.Error
+                errorLayout.tvError.isVisible = loadState.source.refresh is LoadState.Error
             }
 
-            errorLayout.buttonRetry.setOnClickListener {
+            errorLayout.btnRetry.setOnClickListener {
                 recyclerViewAdapter.retry()
             }
 
             rvMovies.apply {
                 adapter = recyclerViewAdapter.withLoadStateHeaderAndFooter(
-                    header = MovieListLoadStateAdapter { recyclerViewAdapter.retry() },
-                    footer = MovieListLoadStateAdapter { recyclerViewAdapter.retry() },
+                    //set click for header/footer
+                    header = ListLoadStateAdapter { recyclerViewAdapter.retry() },
+                    footer = ListLoadStateAdapter { recyclerViewAdapter.retry() },
                 )
             }
 
             recyclerViewAdapter.onMovieClick {
-                val action = MovieListFragmentDirections.actionMovieFragmentToDetailsFragment(it)
+                val action = PopularListFragmentDirections.actionMovieFragmentToDetailsFragment(it)
                 findNavController().navigate(action)
             }
         }

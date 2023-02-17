@@ -14,5 +14,5 @@ class MovieDetailsRepository@Inject constructor(
 
     suspend fun addToFavorite(movieDetails: MovieDetails) = moviesDao.insert(movieDetails = movieDetails)
     suspend fun deleteFromFavorite(movieDetails: MovieDetails) = moviesDao.delete(movieDetails = movieDetails)
-    suspend fun isMovieAlreadySaved(movieDetails: MovieDetails) = moviesDao.isMovieAlreadySaved(movieDetails.id!!)
+    fun isMovieAlreadySaved(movieDetails: MovieDetails) = moviesDao.isMovieAlreadySaved(movieDetails.id!!)
 }

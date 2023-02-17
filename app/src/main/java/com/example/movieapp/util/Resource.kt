@@ -6,7 +6,6 @@ data class Resource<out T>(val status: Status, val data: T?, val message: String
         SUCCESS,
         ERROR,
         LOADING,
-        NONE,
         UNAUTHORIZED
     }
 
@@ -21,10 +20,6 @@ data class Resource<out T>(val status: Status, val data: T?, val message: String
 
         fun <T> loading(): Resource<T> {
             return Resource(Status.LOADING, null, null)
-        }
-
-        fun <T> none(): Resource<T> {
-            return Resource(Status.NONE, null, null)
         }
 
         fun <T> unauthorized(): Resource<T> {

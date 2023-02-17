@@ -13,7 +13,7 @@
             type="MovieDetails" />
 
         <variable
-            name="con"
+            name="constant"
             type="Const" />
 
     </data>
@@ -35,6 +35,7 @@
                 <com.google.android.material.appbar.CollapsingToolbarLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:background="@color/white"
                     android:fitsSystemWindows="true"
                     app:layout_scrollFlags="scroll|exitUntilCollapsed">
 
@@ -46,35 +47,12 @@
                         <ImageView
                             android:layout_width="0dp"
                             android:layout_height="@dimen/dimen_400"
-                            android:scaleType="center"
                             app:layout_constraintEnd_toEndOf="parent"
                             app:layout_constraintStart_toStartOf="parent"
                             app:layout_constraintTop_toTopOf="parent"
                             app:loadImage="@{movieDetails.poster_path}"
-                            app:imageSize="@{con.LARGER_IMAGE}"/>
+                            app:imageSize="@{constant.LARGER_IMAGE}"/>
 
-                        <ImageView
-                            android:id="@+id/back_press"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_margin="@dimen/dimen_20"
-                            android:src="@drawable/ic_arrow_back_24"
-                            app:layout_constraintStart_toStartOf="parent"
-                            app:layout_constraintTop_toTopOf="parent" />
-
-                        <TextView
-                            style="@style/TextAppearance.AppCompat.Title"
-                            android:layout_width="0dp"
-                            android:layout_height="wrap_content"
-                            android:layout_marginStart="@dimen/dimen_20"
-                            android:layout_marginTop="@dimen/dimen_16"
-                            android:ellipsize="end"
-                            android:maxLines="1"
-                            android:text="@{movieDetails.title}"
-                            android:textColor="@color/white"
-                            app:layout_constraintEnd_toEndOf="parent"
-                            app:layout_constraintStart_toEndOf="@id/back_press"
-                            app:layout_constraintTop_toTopOf="parent" />
                     </androidx.constraintlayout.widget.ConstraintLayout>
 
                 </com.google.android.material.appbar.CollapsingToolbarLayout>

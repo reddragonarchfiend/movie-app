@@ -19,7 +19,7 @@ interface MoviesDao {
 
     @Query("select COUNT(*) from movies where id = :movieId")
     fun isMovieAlreadySaved(movieId:Int) : Int
-
+    //update the note for the movie with id
     @Query("UPDATE movies SET note = :note where id = :movieId")
     fun updateNoteForMovie(movieId: Int, note: String?): Int
 }

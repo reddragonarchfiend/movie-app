@@ -39,7 +39,9 @@ class FavoritesListViewAdapter : ListAdapter<MovieDetails, FavoritesListViewAdap
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val data = getItem(position)
+        //bind movie details data to item
         holder.viewDataBinding.setVariable(BR.movieDetails, data)
+        //show notes icon in favorites
         holder.viewDataBinding.setVariable(BR.hideNoteIcon,false)
         holder.viewDataBinding.root.setOnClickListener {
             onClick?.let {

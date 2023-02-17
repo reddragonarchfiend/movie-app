@@ -11,7 +11,7 @@ import com.example.movieapp.R
 import com.example.movieapp.databinding.DialogEditNoteBinding
 import dagger.hilt.android.AndroidEntryPoint
 
-@AndroidEntryPoint
+
 class EditNoteDialogFragment : DialogFragment() {
 
     private val args: EditNoteDialogFragmentArgs by navArgs()
@@ -26,6 +26,7 @@ class EditNoteDialogFragment : DialogFragment() {
             .setPositiveButton(getString(R.string.edit)) { dialog, id ->
 
                 val note = binding.etNote.text.toString().trim()
+                // send result to favorites fragment that a note is updated
                 setFragmentResult(
                     "note_request",
                     bundleOf("note" to note, "movieId" to args.movieId)

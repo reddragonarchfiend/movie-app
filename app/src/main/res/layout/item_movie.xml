@@ -50,7 +50,7 @@
                 android:layout_marginHorizontal="@dimen/dimen_6"
                 android:layout_marginTop="@dimen/dimen_20"
                 android:text="@{movieDetails.title}"
-                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintEnd_toStartOf="@id/ivNote"
                 app:layout_constraintStart_toEndOf="@id/ivMoviePoster"
                 app:layout_constraintTop_toTopOf="parent"
                 tools:text="Title" />
@@ -71,6 +71,7 @@
                 tools:text="Description" />
 
             <ImageView
+
                 app:hideNotesIcon="@{hideNoteIcon}"
                 android:id="@+id/ivNote"
                 android:layout_width="wrap_content"
@@ -78,8 +79,7 @@
                 android:src="@drawable/ic_sticky_note_24"
                 app:layout_constraintEnd_toEndOf="parent"
                 android:layout_marginEnd="@dimen/dimen_6"
-                android:layout_marginTop="@dimen/dimen_6"
-                app:layout_constraintTop_toBottomOf="@id/tvDescription"/>
+                app:layout_constraintTop_toTopOf="@id/tvTitle"/>
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 

@@ -3,13 +3,13 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/mobile_navigation"
-    app:startDestination="@+id/movieFragment">
+    app:startDestination="@+id/popularListFragment">
 
     <fragment
-        android:id="@+id/movieFragment"
-        android:name="com.example.movieapp.ui.movies_list.MovieListFragment"
-        android:label="fragment_movie"
-        tools:layout="@layout/fragment_movie_list">
+        android:id="@+id/popularListFragment"
+        android:name="com.example.movieapp.ui.popular.PopularListFragment"
+        android:label="@string/popular"
+        tools:layout="@layout/fragment_popular_list">
         <action
             android:id="@+id/action_movieFragment_to_detailsFragment"
             app:destination="@id/detailsFragment"
@@ -20,7 +20,7 @@
     <fragment
         android:id="@+id/detailsFragment"
         android:name="com.example.movieapp.ui.movie_details.MovieDetailsFragment"
-        android:label="fragment_details"
+        android:label="Movie Details"
         tools:layout="@layout/fragment_details">
         <argument
             android:name="movieDetails"
@@ -30,8 +30,8 @@
     <fragment
         android:id="@+id/favoritesFragment"
         android:name="com.example.movieapp.ui.favorites.FavoritesFragment"
-        android:label="fragment_movie"
-        tools:layout="@layout/fragment_movie_list">
+        android:label="@string/favorites"
+        tools:layout="@layout/fragment_popular_list">
         <action
             android:id="@+id/action_favoritesFragment_to_detailsFragment"
             app:destination="@id/detailsFragment" />
@@ -43,7 +43,7 @@
 
     <dialog
         android:id="@+id/editNoteFragment"
-        android:label="fragment_edit_note"
+        android:label="@string/edit_note"
         android:name="com.example.movieapp.ui.favorites.EditNoteDialogFragment"
         tools:layout="@layout/dialog_edit_note">
         <argument
@@ -55,4 +55,14 @@
             app:argType="string"
             app:nullable="true"/>
     </dialog>
+
+    <fragment
+        android:id="@+id/movieSearchFragment"
+        android:name="com.example.movieapp.ui.search.SearchMoviesFragment"
+        android:label=""
+        tools:layout="@layout/fragment_popular_list">
+        <action
+            android:id="@+id/action_searchFragment_to_detailsFragment"
+            app:destination="@id/detailsFragment" />
+    </fragment>
 </navigation>

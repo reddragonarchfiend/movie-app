@@ -39,15 +39,16 @@ class FavoritesFragment : Fragment(){
         super.onViewCreated(view, savedInstanceState)
 
         setRecyclerView()
-
+        //update ui on every state flow event
         viewModel.movies.onEach(::renderMovies).launchIn(lifecycleScope)
 
+        //receive the note that was updated in the note dialog fragment
         setFragmentResultListener("note_request"){requestKey, bundle ->
             val movieId = bundle.getInt("movieId")
             val note = bundle.getString("note")
             viewModel.updateNoteForMovie(movieId,note)
 
-            SnackbarHelper.createShortSnackbar(view,getString(R.string.note_updated))
+            SnackbarHelper.createShortSnackbar(view,getString(R.string.note_updated),binding.snackbarAnchor)
         }
     }
 
@@ -55,12 +56,12 @@ class FavoritesFragment : Fragment(){
         binding.rvFavorites.apply {
             recyclerViewAdapter = FavoritesListViewAdapter()
             adapter = recyclerViewAdapter
-
+            //recyclerview item click
             recyclerViewAdapter.onMovieClick {
                 val action = FavoritesFragmentDirections.actionFavoritesFragmentToDetailsFragment(it)
                 findNavController().navigate(action)
             }
-
+            //recyclerview note click
             recyclerViewAdapter.onNotesClick { movieId, note ->
                 setupEditNotesDialog(movieId,note)
             }

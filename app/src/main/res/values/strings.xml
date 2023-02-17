@@ -25,4 +25,6 @@
     <string name="cancel">Cancel</string>
     <string name="edit">Edit</string>
     <string name="note_updated">Note updated</string>
+    <string name="search">Search</string>
+    <string name="no_search_results">No search results</string>
 </resources>

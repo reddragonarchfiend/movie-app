@@ -2,10 +2,9 @@ package com.example.movieapp.di
 
 import android.content.Context
 import androidx.room.Room
-import androidx.viewbinding.BuildConfig
 import com.example.movieapp.data.db.MoviesDao
 import com.example.movieapp.data.db.MoviesDatabase
-import com.example.movieapp.data.repository.movies_list.MoviesListRepository
+import com.example.movieapp.data.repository.popular.PopularListRepository
 import com.example.movieapp.networking.NetworkService
 import com.example.movieapp.util.Const
 import com.google.gson.Gson
@@ -25,28 +24,22 @@ import javax.inject.Singleton
 @InstallIn(SingletonComponent::class)
 object AppModule {
 
-    @Singleton
-    @Provides
-    fun provideMovieRepository(
-        service: NetworkService
-    ) = MoviesListRepository(service)
-
     @Provides
     fun provideOkHttpClient(
         interceptor: HttpLoggingInterceptor
     ): OkHttpClient =
         OkHttpClient.Builder()
             .addInterceptor(interceptor)
-            .connectTimeout(60, TimeUnit.SECONDS)
-            .readTimeout(60, TimeUnit.SECONDS)
-            .writeTimeout(60, TimeUnit.SECONDS)
+            .connectTimeout(15, TimeUnit.SECONDS)
+            .readTimeout(15, TimeUnit.SECONDS)
+            .writeTimeout(15, TimeUnit.SECONDS)
             .build()
 
     @Provides
     fun provideLoggingInterceptor() =
         HttpLoggingInterceptor().apply {
             level =
-                if (BuildConfig.DEBUG) HttpLoggingInterceptor.Level.BODY else HttpLoggingInterceptor.Level.NONE
+                HttpLoggingInterceptor.Level.BODY
         }
 
     @Provides
@@ -61,6 +54,7 @@ object AppModule {
         converterFactory: GsonConverterFactory
     ) = provideService(okHttpClient, converterFactory, NetworkService::class.java)
 
+    //build retrofit
     private fun createRetrofit(
         okHttpClient: OkHttpClient,
         converterFactory: GsonConverterFactory
@@ -80,6 +74,7 @@ object AppModule {
         return createRetrofit(okHttpClient, converterFactory).create(clazz)
     }
 
+    //build database
     @Provides
     @Singleton
     fun provideMoviesDatabase(@ApplicationContext context: Context) =

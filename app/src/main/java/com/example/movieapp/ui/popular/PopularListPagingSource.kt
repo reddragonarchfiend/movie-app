@@ -1,4 +1,4 @@
-package com.example.movieapp.ui.movies_list
+package com.example.movieapp.ui.popular
 
 import androidx.paging.PagingSource
 import androidx.paging.PagingState
@@ -7,7 +7,7 @@ import com.example.movieapp.networking.NetworkService
 import com.example.movieapp.util.Const
 import com.example.movieapp.util.Const.STARTING_INDEX
 
-class MoviesPagingSource(
+class PopularListPagingSource(
     private val networkService: NetworkService
 ) : PagingSource<Int, MovieDetails>() {
     override suspend fun load(params: LoadParams<Int>): LoadResult<Int, MovieDetails> {
@@ -29,6 +29,9 @@ class MoviesPagingSource(
     }
 
     override fun getRefreshKey(state: PagingState<Int, MovieDetails>): Int? {
+        // get the previous key (or next key if previous is null) of the page
+        // that was closest to the most recently accessed index.
+        // Anchor position is the most recently accessed index
         return state.anchorPosition?.let {
             val anchorPage = state.closestPageToPosition(it)
             anchorPage?.prevKey?.plus(1)?:anchorPage?.nextKey?.minus(1)

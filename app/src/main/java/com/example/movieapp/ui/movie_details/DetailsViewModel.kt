@@ -23,14 +23,15 @@ class DetailsViewModel @Inject constructor(private val repository: MovieDetailsR
     val isMovieSaved: LiveData<Boolean>
         get() = _isMovieSaved
 
+    //save movie to db
     fun saveFavoriteMovie(movieDetails: MovieDetails) = viewModelScope.launch {
         repository.addToFavorite(movieDetails = movieDetails)
     }
-
+    //delete movie from db
     fun deleteFavoriteMovie(movieDetails: MovieDetails) = viewModelScope.launch {
         repository.deleteFromFavorite(movieDetails = movieDetails)
     }
-
+    //check if movie is already in db
     fun checkIfMovieSaved(movieDetails : MovieDetails) = viewModelScope.launch(Dispatchers.IO) {
         if (repository.isMovieAlreadySaved(movieDetails) >= 1) {
             _isMovieSaved.postValue(true)
@@ -38,7 +39,7 @@ class DetailsViewModel @Inject constructor(private val repository: MovieDetailsR
             _isMovieSaved.postValue(false)
         }
     }
-
+    //network call for movie details
     fun getMovieDetails(movieId : Int){
         viewModelScope.launch {
             _movieDetails.postValue(Resource.loading())

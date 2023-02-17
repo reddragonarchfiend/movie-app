@@ -2,7 +2,7 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
 
     <item
-        android:id="@+id/movieFragment"
+        android:id="@+id/popularListFragment"
         android:icon="@drawable/ic_movie_24"
         android:title="@string/popular" />
 
@@ -10,5 +10,10 @@
         android:id="@+id/favoritesFragment"
         android:icon="@drawable/ic_favorite_24"
         android:title="@string/favorites" />
+
+    <item
+        android:id="@+id/movieSearchFragment"
+        android:icon="@drawable/ic_search_24"
+        android:title="@string/search" />
 
 </menu>

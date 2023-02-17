@@ -6,7 +6,6 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.viewModels
-import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import com.example.movieapp.R
 import com.example.movieapp.databinding.FragmentDetailsBinding
@@ -34,18 +33,10 @@ class MovieDetailsFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-       setClickListeners()
-
         viewModel.getMovieDetails(args.movieDetails.id!!)
         viewModel.checkIfMovieSaved(args.movieDetails)
 
         setObservers()
-    }
-
-    private fun setClickListeners(){
-        binding.backPress.setOnClickListener {
-            findNavController().popBackStack()
-        }
     }
 
     private fun setFabClickRemoveMovie(){
@@ -66,7 +57,7 @@ class MovieDetailsFragment : Fragment() {
             setFabClickRemoveMovie()
         }
     }
-
+    //set icon and click on fab depending on if the movie is already in db
     private fun setObservers(){
         viewModel.isMovieSaved.observe(viewLifecycleOwner) {
             when (it) {
@@ -91,16 +82,13 @@ class MovieDetailsFragment : Fragment() {
 
                 Resource.Status.ERROR -> {
                     binding.detailsProgress.visibility = View.GONE
+                    //in case of error show the available data from args
                     binding.movieDetails = args.movieDetails
                     SnackbarHelper.createShortSnackbar(requireView(),getString(R.string.error_fetching_data),binding.fabFavourites)
 
                 }
                 Resource.Status.LOADING -> {
                     binding.detailsProgress.visibility = View.VISIBLE
-                }
-
-                Resource.Status.NONE -> {
-
                 }
 
                 Resource.Status.UNAUTHORIZED -> {
